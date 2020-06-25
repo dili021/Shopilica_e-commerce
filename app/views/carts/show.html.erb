@@ -1,0 +1,23 @@
+<div class="cart text-gray-700 flex p-4">
+  <div class="cart-items w-1/2">
+    <div class="items-heading text-gray-600 pr-6 flex px-2 justify-between">
+      <h2 class="text-xl">Proizvodi:</h2>
+      <span>Kolicina</span>
+    </div>
+    <%= render @cart.line_items %>
+  </div>
+  <div class="cart-options mx-auto px-4">
+    <div class="w-full py-4 px-2 mb-4 justify-between flex border-gray-200 border-2 cart-info">
+      <span>Ukupno za naplatu:</span>
+      <span><%= @cart.total_price %></span>
+    </div>
+    <div class="links">
+      <%= link_to "Nastavi sa kupovinom", products_path, 
+                                          class: "m-3 text-xs uppercase font-bold" %>
+      <%= link_to "Isprazni korpu", @cart, method: :delete, 
+                                           data: { confirm: "Da li ste sigurni?" },
+                                           class: "m-3 py-2 px-8 text-xs rounded-lg bg-red-500 hover:bg-red-700 text-white uppercase font-bold"%>
+      <%= link_to "Kupi", "#", class: "m-3 py-2 px-8 text-xs rounded-lg bg-green-500 hover:bg-green-700 text-white uppercase font-bold" %>
+    </div>
+  </div>
+</div>

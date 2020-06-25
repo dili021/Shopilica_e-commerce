@@ -22,10 +22,10 @@
       <div class="account flex px-3 justify-evenly">
         <% if user_signed_in? %>
           <%= link_to "Edit profile", edit_user_registration_path, class: "mx-3" %>
-          <%= link_to "Log out", edit_user_registration_path, class: "mx-3" %>
+          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "mx-3" %>
         <% else %>
-          <%= link_to "Log in", new_user_session_path %>
-          <%= link_to "Sign up", new_user_registration_path %>
+          <%= link_to "Log in", new_user_session_path, class: "mx-3" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "mx-3" %>
         <% end %>
       </div>
     </div>

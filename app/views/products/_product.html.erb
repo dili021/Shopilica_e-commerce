@@ -1,0 +1,9 @@
+<div class="product-card mx-auto w-1/6 shadow flex-col p-3 justify-between items-center flex">
+  <%= image_tag(product.images.first, class: "w-full mb-4")%>
+  <div class="body">
+    <%= link_to "#{product.name}", product, class: "text-blue-700
+                                                    hover:text-blue-800" %>
+    <br>
+    <small><%= product.user.name %></small>
+  </div>
+</div>

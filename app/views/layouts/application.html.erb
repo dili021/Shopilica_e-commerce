@@ -9,7 +9,7 @@
     <%= javascript_pack_tag 'application'%>
     <%= stylesheet_pack_tag 'application'%>
   </head>
-  <body>
+  <body class="bg-gray-100">
     <%# Navbar %>
     <div class=" flex items-center px-3 relative text-teal-300 uppercase text-sm justify-between bg-teal-900 h-12">
       <%= render 'devise/shared/profile' if user_signed_in? %>

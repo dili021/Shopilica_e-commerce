@@ -10,6 +10,13 @@
     <%= stylesheet_pack_tag 'application'%>
   </head>
   <body>
+    <%# Navbar %>
+    <div class=" flex items-center px-3 relative text-teal-300 uppercase text-sm justify-between bg-teal-900 h-12">
+      <%= render 'devise/shared/profile' if user_signed_in? %>
+      <div class="absolute right-0">
+        <%= render 'devise/shared/session_links' %>
+      </div>
+    </div>
     <% if flash.any? %>
       <ul>
         <% flash.each do |type, msg|%>
@@ -17,18 +24,6 @@
         <% end %>
       </ul>
     <% end %>
-    <%# Navbar %>
-    <div class=" flex items-center justify-end bg-yellow-500 h-16">
-      <div class="account flex px-3 justify-evenly">
-        <% if user_signed_in? %>
-          <%= link_to "Edit profile", edit_user_registration_path, class: "mx-3" %>
-          <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "mx-3" %>
-        <% else %>
-          <%= link_to "Log in", new_user_session_path, class: "mx-3" %>
-          <%= link_to "Sign up", new_user_registration_path, class: "mx-3" %>
-        <% end %>
-      </div>
-    </div>
     <%= yield %>
   </body>
 </html>

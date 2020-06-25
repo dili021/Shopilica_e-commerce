@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <%= link_to "Korpa", cart_path(@cart) %>
+  <%= link_to "Izlaz", destroy_user_session_path, method: :delete, class: "mx-4" %>
+<% else %>
+  <%= link_to "Ulaz", new_user_session_path, class: "mx-4" %>
+  <%= link_to "Napravi nalog", new_user_registration_path, class: "mx-4" %>
+<% end %>

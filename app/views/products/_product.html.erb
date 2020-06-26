@@ -1,7 +1,7 @@
 <hr>
 <div class="product-card flex-wrap mb-3 mx-auto w-2/3 p-3 justify-between items-stretch flex">
   <div class="body text-center w-2/6 flex">
-    <%= image_tag(product.images.first, class: "") if product.images.attached?%>
+    <%= image_tag(product.images.first, class: "object-cover") if product.images.attached?%>
   </div>
   <div class="flex px-4 w-4/6 flex-wrap text-gray-600">
     <h2 class="w-full h-12 text-2xl capitalize 

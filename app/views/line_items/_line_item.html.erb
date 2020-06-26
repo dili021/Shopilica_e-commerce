@@ -3,7 +3,9 @@
     <span class="text-2xl"><%= line_item.product.name %></span>
     <div class="price-and-x">
       <span class="mr-4"><%= line_item.quantity %> x <%= line_item.product.price %></span>
-      <%= link_to "X", line_item, method: :delete, data: { confirm: "Da li ste sigurni?" } %>
+      <%= link_to "X", line_item, method: :delete, 
+                                  data: { confirm: "Da li ste sigurni?" },
+                                  class: "font-bold text-xl" %>
     </div>
   </div>
   <div class="amount">

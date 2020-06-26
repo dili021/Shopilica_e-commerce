@@ -16,3 +16,12 @@ require("channels")
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 import "../css/application.scss"
+
+document.addEventListener("turbolinks:load", function() {
+  let notification = document.querySelector('.notifications');
+  if(notification) {
+    window.setTimeout(function() {
+      notification.remove();
+    }, 3000);
+  };
+});

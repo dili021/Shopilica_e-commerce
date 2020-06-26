@@ -1,41 +1,60 @@
 <div class="box flex justify-between p-6">
-  <div class="user-items">
-    <% current_user.products.each do |product|%>
-    <% end %>
-  </div>
-  <div class="edit-profile p-2 rounded bg-white shadow w-1/5 mx-auto mr-12 text-center">
-    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
-      <div class="field mx-auto">
-        <%= f.label :email, hidden: true %>
-        <%= f.email_field :email, autocomplete: "email", class: "shadow-md p-2" %>
-      </div>
-      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+  <div class="forms flex">
+    <div class="new-item"><%= render 'products/form', product: current_user.products.new%></div>
+    <div class="edit-profile p-2 rounded bg-white h-full shadow text-center">
+      <h2 class="p-3 text-teal-700">Izmeni podatke</h2>
+      <%= form_for(resource, as: resource_name, 
+                             url: registration_path(resource_name), 
+                             html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <div class="field mx-auto">
+          <%= f.label       :email, hidden: true %>
+          <%= f.email_field :email, autocomplete: "email", 
+                                    class: "shadow-md p-2" %>
+        </div>
+        <% if devise_mapping.confirmable? && 
+              resource.pending_reconfirmation? %>
         <div>Cekamo potvrdu za: <%= resource.unconfirmed_email %></div>
       <% end %>
       <br>
       <div class="field mx-auto">
-        <%= f.label :password, hidden: true %> <i></i>
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "Nova lozinka (najmanje 6 slova)", class: "shadow-md p-2" %>
+        <%= f.label          :password, hidden: true %> <i></i>
+        <%= f.password_field :password, autocomplete: "new-password", 
+                                        placeholder: "Nova lozinka (najmanje 6 slova)", 
+                                        class: "shadow-md p-2" %>
       </div>
       <br>
       <div class="field mx-auto">
-        <%= f.label :password_confirmation, hidden: true %>
-        <%= f.password_field :password_confirmation, placeholder: "potvrdi lozinku", autocomplete: "new-password", class: "shadow-md p-2" %>
+        <%= f.label          :password_confirmation, hidden: true %>
+        <%= f.password_field :password_confirmation, placeholder: "potvrdi lozinku", 
+                                                     autocomplete: "new-password", 
+                                                     class: "shadow-md p-2" %>
       </div>
       <br>
       <div class="field mx-auto">
-        <%= f.label :current_password, hidden: true %>
-        <%= f.password_field :current_password, placeholder: "trenutna lozinka", autocomplete: "current-password", class: "shadow-md p-2" %>
+        <%= f.label          :current_password, hidden: true %>
+        <%= f.password_field :current_password, placeholder: "trenutna lozinka", 
+                                                autocomplete: "current-password", 
+                                                class: "shadow-md p-2" %>
       </div>
       <br>
-      <div class="actions">
-        <%= f.submit "Izmeni", class: "px-4 uppercase rounded text-white text-sm py-2 bg-teal-500 hover:bg-teal-700" %>
-      </div>
-    <% end %>
+      <br>
+      <div class="actions self-end">
+        <%= f.submit "Izmeni", class: "px-4 uppercase rounded 
+                                         text-white text-sm py-2 w-full
+                                         bg-teal-500 hover:bg-teal-700" %>
+      <% end %>
+    </div>
     <p><%= button_to "Obrisi nalog", registration_path(resource_name), 
                                      data: { confirm: "Da li ste sigurni?" }, 
                                      method: :delete,
-                                     class: "mt-4 rounded px-2 py-2 uppercase text-sm text-white bg-red-600 hover:bg-red-800" %></p>
+                                     class: "mt-4 rounded px-2 py-2 w-full
+                                             uppercase text-sm text-white 
+                                             bg-red-600 hover:bg-red-800" %></p>
   </div>
+</div>
+<div class="user-items w-full">
+  <% current_user.products.each do |product|%>
+  <% end %>
+</div>
 </div>

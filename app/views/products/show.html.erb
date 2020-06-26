@@ -1,26 +1,30 @@
-<% @product.images.each do |image| %>
-  <div>
-    <p>
-      <%= image_tag(image, class: "w-64 h-64 m-2 rounded-lg")%>
+<div class="wrap flex flex-wrap p-3">
+  <div class="album flex justify-center w-full">
+    <% if @product.images.attached? %>
+      <% @product.images.each do |img| %>
+        <%= image_tag(img, class: "w-1/4 p-2 object-cover object-center h-full")%>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="px-8 text-gray-600">
+    <h2 class="w-full h-12 text-2xl capitalize 
+               text-blue-700 text-center">
+      <%= @product.name%>
+    </h2>
+    <br>
+    <div class="text-and-links justify-between flex-wrap mx-auto items-between flex w-1/2">
+      <p class="w-full"><%= @product.description %></p>
+      <small class="whitespace-no-wrap p-3 text-gray-900 self-end">Prodavac: <%= @product.user.name %></small>
+      <div class="links flex items-end  uppercase text-sm text-teal-800">
+        <% if product_owner(@product) %>
+          <p class="px-4 m-1 uppercase rounded text-white text-sm py-2 bg-teal-500 hover:bg-teal-700"><%= link_to 'Izmeni', edit_product_path(@product) %></p>
+          <p class="m-1 rounded px-2 py-2 uppercase text-sm text-white bg-red-600 hover:bg-red-800"><%= link_to 'Ukloni', @product, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        <% else %>
+          <%= button_to "Dodaj u korpu", line_items_path(product_id: @product),
+                                         class: "px-4 m-1 uppercase rounded text-white text-sm py-2 bg-teal-500 hover:bg-teal-700"%>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-  <p>
-    <strong>Name:</strong>
-    <%= @product.name %>
-  </p>
-  <p>
-    <strong>Description:</strong>
-    <%= @product.description %>
-  </p>
-  <p>
-    <strong>Price:</strong>
-    <%= @product.price %>
-  </p>
-  <% if product_owner(@product) %>
-    <td><%= link_to 'Edit', edit_product_path(@product) %></td>
-    <td><%= link_to 'Destroy', @product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  <% else %>
-    <%= button_to "Add to cart", line_items_path(product_id: @product)%>
-  <% end %>
-  <%= link_to 'Back', products_path %>
-  <p>
+  </div>
+</div>
+</div>

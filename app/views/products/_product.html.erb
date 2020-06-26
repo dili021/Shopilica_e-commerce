@@ -1,9 +1,27 @@
-<div class="product-card mx-auto w-1/6 shadow flex-col p-3 justify-between items-center flex">
-  <%= image_tag(product.images.first, class: "w-full mb-4")%>
-  <div class="body">
-    <%= link_to "#{product.name}", product, class: "text-blue-700
-                                                    hover:text-blue-800" %>
+<hr>
+<div class="product-card flex-wrap mb-3 mx-auto w-2/3 p-3 justify-between items-stretch flex">
+  <div class="body text-center w-2/6 flex">
+    <%= image_tag(product.images.first, class: "") if product.images.attached?%>
+  </div>
+  <div class="flex px-4 w-4/6 flex-wrap text-gray-600">
+    <h2 class="w-full h-12 text-2xl capitalize 
+               text-blue-700 hover:text-blue-800 text-center">
+      <%= link_to "#{product.name}", product %>
+    </h2>
     <br>
-    <small><%= product.user.name %></small>
+    <div class="text-and-links flex-wrap justify-end flex w-full">
+      <p class="w-full"><%= product.description %></p>
+      <small class="whitespace-no-wrap p-3 text-gray-900 self-end">Prodavac: <%= product.user.name %></small>
+      <div class="links flex items-end  uppercase text-sm text-teal-800">
+        <% if product_owner(product) %>
+          <p class="px-4 m-1 uppercase rounded text-white text-sm py-2 bg-teal-500 hover:bg-teal-700"><%= link_to 'Izmeni', edit_product_path(product) %></p>
+          <p class="m-1 rounded px-2 py-2 uppercase text-sm text-white bg-red-600 hover:bg-red-800"><%= link_to 'Ukloni', product, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+        <% else %>
+          <%= button_to "Dodaj u korpu", line_items_path(product_id: product),
+                                         class: "px-4 m-1 uppercase rounded text-white text-sm py-2 bg-teal-500 hover:bg-teal-700"%>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
+<hr>

@@ -12,15 +12,16 @@
   <body class="bg-gray-100">
     <%# Navbar %>
     <div class=" flex items-center px-3 relative text-teal-300 uppercase text-sm justify-between bg-teal-900 h-12">
-      <%= render 'devise/shared/profile' if user_signed_in? %>
-      <div class="absolute right-0">
+      <h1 class="text-2xl text-teal-200"><%= link_to "Shopilica!", root_path%></h1>
+      <div>
+        <%= render 'devise/shared/profile' if user_signed_in? %>
         <%= render 'devise/shared/session_links' %>
       </div>
     </div>
     <% if flash.any? %>
-      <ul>
+      <ul class="text-teal-800 text-center bg-teal-200">
         <% flash.each do |type, msg|%>
-          <li> <%= msg %> </li>
+          <li class="p-4"> <%= msg %> </li>
         <% end %>
       </ul>
     <% end %>

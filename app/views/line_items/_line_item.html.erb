@@ -1,5 +1,13 @@
-<div class="box flex border-gray-200 border-2 mb-1 h-16 items-center px-4 justify-between">
-  <span class="text-2xl"><%= line_item.product.name %></span>
-  <span><%= line_item.quantity %> x <%= line_item.product.price %></span>
-  <%= link_to "X", line_item, method: :delete, data: { confirm: "Da li ste sigurni?" } %>
+<div class="box  flex">
+  <div class="box flex w-full border-gray-200 border-2 mb-1 h-16 items-center px-4 justify-between">
+    <span class="text-2xl"><%= line_item.product.name %></span>
+    <div class="price-and-x">
+      <span class="mr-4"><%= line_item.quantity %> x <%= line_item.product.price %></span>
+      <%= link_to "X", line_item, method: :delete, data: { confirm: "Da li ste sigurni?" } %>
+    </div>
+  </div>
+  <div class="amount">
+    <%= button_to " + ", line_items_path(product_id: line_item.product.id), method: :post %>
+    <%#= button_to " _ ", @cart.remove_product(line_item) %>
+  </div>
 </div>
